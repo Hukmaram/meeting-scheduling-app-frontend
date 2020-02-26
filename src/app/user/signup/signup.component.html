@@ -1,0 +1,111 @@
+<app-navbar></app-navbar>
+<div class="container-fluid login-bg text-center">
+    <h5 class="mx-auto mb-5">Create an Account</h5>
+    <div class="container-fluid border rounded mydiv py-2">
+            <div class="test rounded-circle mx-auto"><i class="fa fa-user" style="color:#00334d;font-size: 30px;"></i></div>
+<div class="row my-2">
+    <div class="col-lg-12 text-center">
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                    <div class="input-group mt-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                      <input type="text" [class.is-invalid]="firstNameValidation.invalid && firstNameValidation.touched" class="form-control" placeholder="Fisrt Name" formControlName="firstNameValidation">
+                    </div>
+                    <div *ngIf="(firstNameValidation.invalid && firstNameValidation.touched)|| firstNameValidation.dirty">
+                  
+                            <small *ngIf="firstNameValidation.errors?.required" class="text-danger">
+                              Fisrt Name is required.
+                            </small>
+                            <small *ngIf="firstNameValidation.errors?.minlength" class="text-danger">
+                              First Name must be at least 4 characters long.
+                            </small>
+                            </div>
+                    <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" [class.is-invalid]="lastNameValidation.invalid && lastNameValidation.touched" class="form-control" placeholder="Last Name" formControlName="lastNameValidation">
+                          </div>
+                          <div *ngIf="(lastNameValidation.invalid && lastNameValidation.touched)|| lastNameValidation.dirty">
+                  
+                                <small *ngIf="lastNameValidation.errors?.required" class="text-danger">
+                                  Last Name is required.
+                                </small>
+                                <small *ngIf="lastNameValidation.errors?.minlength" class="text-danger">
+                                  Last Name must be at least 4 characters long.
+                                </small>
+                                </div>
+                          <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                </div>
+                                <input type="email" [class.is-invalid]="emailValidation.invalid && emailValidation.touched" class="form-control" placeholder="Email address" formControlName="emailValidation">
+                              </div>
+                              <div *ngIf="(emailValidation.invalid && emailValidation.touched)|| emailValidation.dirty">
+                  
+                                    <small *ngIf="emailValidation.errors?.required" class="text-danger">
+                                      Email is required.
+                                    </small>
+                                    <small *ngIf="emailValidation.errors?.email" class="text-danger">
+                                        Please provide a valid email address.
+                                    </small>
+                                    </div>
+                    <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                                  </div>
+                      <input type="password"  [class.is-invalid]="passwordValidation.invalid && passwordValidation.touched" class="form-control" placeholder="Password" formControlName="passwordValidation">
+                    </div>
+                    <div *ngIf="(passwordValidation.invalid && passwordValidation.touched)|| passwordValidation.dirty">
+                  
+                            <small *ngIf="passwordValidation.errors?.required" class="text-danger">
+                              Password is required.
+                            </small>
+                            <small *ngIf="passwordValidation.errors?.minlength" class="text-danger">
+                               Password must be at least 8 characters long.
+                            </small>
+                            </div>
+                          <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fa fa-flag"></i></span>
+                            </div>
+                            <select  class="form-control" formControlName="countryValidation" [(value)]="country" (change)="callWhenCountryChange()">
+                            <option value="" hidden >Select a Country</option>
+                            <option *ngFor="let country of countriesCodeName" [value]="country.code">{{country.name}}</option>
+                            </select>
+                          </div>
+                          <div class="input-group mt-3">
+                                  <div class="input-group-prepend">
+                                          <span *ngIf="this.myCountryCode"class="input-group-text">{{this.myCountryCode}}</span>
+                                          <span *ngIf="!this.myCountryCode"class="input-group-text"><i class="fa fa-phone"></i></span>
+                                        </div>
+                            <input type="text" onKeyPress="if(this.value.length==10) return false;" [class.is-invalid]="mobileValidation.invalid && mobileValidation.touched" class="form-control" placeholder="Mobile Number" formControlName="mobileValidation">
+                          </div>
+                          <div *ngIf="(mobileValidation.invalid && mobileValidation.touched)|| mobileValidation.dirty">
+                  
+                                <small *ngIf="mobileValidation.errors?.required" class="text-danger">
+                                  Mobile is required.
+                                </small>
+                                <small *ngIf="mobileValidation.errors?.pattern" class="text-danger">
+                                    Mobile Number must be 10 digit number.
+                                </small>
+                                </div>
+                                <div class="input-group mt-3">
+                                  <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                      <input type="checkbox" formControlName="userTypeValidation" value="true"> 
+                                    </div>
+                                  </div>
+                                  <input type="text" class="form-control" placeholder="Give me Admin Access" disabled>
+                                </div>
+                                <br>
+                                <button type="submit" [disabled]="!signupForm.valid" class="btn btn-block btn-primary mx-auto">Sign up</button>
+                  </form>
+                <br>
+                <div class="text-center"><a [routerLink]="['/login']">Have an Account?</a></div>
+    </div>
+</div>
+</div>
+</div>
+

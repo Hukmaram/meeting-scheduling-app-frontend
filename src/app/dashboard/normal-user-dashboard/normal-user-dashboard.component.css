@@ -1,0 +1,39 @@
+.header-bg{
+    background-color: #00334d;
+    color: white
+}
+.modal-bg-color
+{
+    background-color: #51a351;
+     color: white;  
+}
+.navbar-color{
+    color:white; 
+}
+.button-outline {
+ 
+    outline-color: #51a351;
+}  
+.navbar-bg{
+    background-color: #00334d;
+    color: white
+}
+.navbar-color{
+    color:white; 
+}
+.button-outline {
+ 
+    outline-color: #00334d;
+}  
+.custom-btn-block {
+    width: 78px !important;
+}
+.modal-bg-color
+{
+    background-color: #51a351;
+     color: white;  
+}
+.model-button-outline {
+ 
+    outline-color: #51a351;
+} 

@@ -1,0 +1,18 @@
+.header-bg{
+    background-color: #00334d;
+    color: white
+}
+.navbar-bg{
+    background-color: #00334d;
+    color: white
+}
+.navbar-color{
+    color:white; 
+}
+.button-outline {
+ 
+    outline-color: #00334d;
+}  
+.custom-btn-block {
+    width: 78px !important;
+}

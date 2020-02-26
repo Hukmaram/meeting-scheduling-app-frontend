@@ -1,0 +1,166 @@
+  <nav class="navbar navbar-expand-sm navbar-custom navbar-bg">
+      <button type="button" class="navbar-brand d-none d-sm-block navbar-color btn btn-link">MyMeet</button>
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <div class="dropdown">
+                  <a class="btn dropdown-toggle text-capitalize" data-toggle="dropdown">
+                    Welcome {{receiverName}}
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" (click)="logoutFunction(userId)">Logout</a>
+                  </div>
+                </div>
+            </li>
+          </ul>
+        </nav>
+    <div class="container-fluid">
+        <div class="row text-center p-2">
+            <div class="col-md-3">
+              <div class="btn-group">
+                <div
+                  class="btn"
+                  mwlCalendarPreviousView
+                  [view]="view"
+                  [(viewDate)]="viewDate"
+                  (viewDateChange)="closeOpenMonthViewDay()"
+                >
+                  <i class="fa fa-angle-left" style="font-size:24px"></i>
+                </div>
+                <div
+                  class="btn btn-md"
+                  mwlCalendarToday
+                  [(viewDate)]="viewDate"
+                >
+                  Today
+                </div>
+                <div
+                  class="btn"
+                  mwlCalendarNextView
+                  [view]="view"
+                  [(viewDate)]="viewDate"
+                  (viewDateChange)="closeOpenMonthViewDay()"
+                >
+                <i class="fa fa-angle-right" style="font-size:24px"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <h6>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h6>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group mx-auto" style="width:100px;">
+                    <select [(ngModel)]="view" name="view" class="form-control">
+                        <option value="month">Month</option>
+                        <option value="week">Week</option>
+                        <option value="day">Day</option>
+                      </select>
+                  </div>
+            </div>
+          </div>
+          <hr>
+    <div [ngSwitch]="view" style="height:95vh;overflow-y:scroll">
+    <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+      [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)">
+    </mwl-calendar-month-view>
+    
+    <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+      (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+    </mwl-calendar-week-view>
+    
+    <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+      (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+    </mwl-calendar-day-view>
+    </div>
+    </div>
+    <ng-template #modalContent let-close="close" class="navbar-color">
+      <div class="modal-header navbar-bg">
+        <h5 class="modal-title">Meeting Details</h5>
+        <button type="button" class="close navbar-color button-outline" (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+    
+            <div class="card">
+              <div class="card-body">
+    
+                <div class="row">
+                  <div class="col-4">
+                    <h6><i>Topic</i></h6>
+                  </div>
+                  <div class="col-8">
+                    <p class="card-title">{{modalData?.event.meetingTopic}} by {{modalData?.event.hostName}}</p>
+                  </div>
+                </div>
+    
+                <div class="row">
+                  <div class="col-4">
+                    <h6><i> Agenda </i></h6>
+                  </div>
+                  <div class="col-8">
+                    <p class="card-title">{{modalData?.event.meetingDescription}}</p>
+                  </div>
+                </div>
+    
+                <div class="row">
+                  <div class="col-4">
+                    <h6> <i>Participant </i></h6>
+                  </div>
+                  <div class="col-8">
+                    <p class="card-title">{{modalData?.event.participantName}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <h6><i>Date and Time</i></h6>
+                  </div>
+                  <div class="col-8">
+                    <p class="card-title">{{modalData?.event.meetingStartDate | date: 'medium'}} -
+                      {{modalData?.event.meetingEndDate
+                      | date: 'medium'}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <h6><i>Location </i></h6>
+                  </div>
+                  <div class="col-8">
+                    <p class="card-title">{{modalData?.event.meetingPlace}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #modalAlert let-close="close" id="myModal">
+      <div class="modal-header modal-bg-color">
+        <h5 class="modal-title">Meeting Alert</h5>
+        <button type="button" class="close navbar-color model-button-outline" (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-bg-color">
+        <h6 class="card-title"><span><i> {{message}} </i></span></h6>
+      </div>
+    </ng-template>
+    <ng-template #modalReminder let-close="close">
+      <div class="modal-header modal-bg-color">
+        <h5 class="modal-title">Meeting Reminder</h5>
+        <button type="button" class="close" (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6 class="card-title">Your meeting <span><i> {{modalData?.event.meetingTopic}} </i></span> will start soon!</h6>
+      </div>
+    
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="modalData?.event.remindMe=true;gentleReminder=true;close()">Snooze</button>
+        <button type="button" class="btn btn-outline-secondary" (click)="modalData?.event.remindMe=false;gentleReminder=true;close()">Dismiss</button>
+      </div>
+    </ng-template>

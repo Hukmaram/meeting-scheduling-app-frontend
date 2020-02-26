@@ -1,0 +1,42 @@
+.login-bg{
+    background-color: #00334d;
+    color: white;
+    height:100vh;
+    padding-top: 5%;
+}
+.test {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #00334d;
+    padding: 6px;
+  }
+  @media only screen and (max-width: 600px) {
+    .mydiv {width:70vw;
+        background-color: white;}
+  }
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .mydiv {
+        width:50vw;
+        background-color: white;
+    }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    .mydiv {width:40vw;
+        background-color: white;}
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .mydiv {width:30vw;
+        background-color: white;}
+  } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    .mydiv {width:30vw;
+        background-color: white;
+    }
+  }

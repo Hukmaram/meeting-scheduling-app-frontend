@@ -1,0 +1,107 @@
+<div class="container-fluid login-bg text-center" *ngIf="meetingDetails">
+    <div>
+        <h5 class="mx-auto mb-5 text-capitalize">Update Meeting Scheduled with {{meetingDetails.participantName}}</h5>
+    </div>
+    <div class="container-fluid border rounded mydiv py-2">
+        <div class="test rounded-circle mx-auto"><i class="far fa-calendar-check"
+                style="color:#00334d;font-size: 30px;"></i></div>
+        <div class="row my-2">
+            <div class="col-lg-12 text-center">
+                <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()">
+                    <div class="input-group mt-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-pencil-alt"></i></span>
+                        </div>
+                        <input type="text" [class.is-invalid]="titleValidation.invalid && titleValidation.touched"
+                            class="form-control" placeholder="Meeting Title" name="titleValidation"
+                            formControlName="titleValidation" [(ngModel)]="meetingDetails.meetingTopic">
+                    </div>
+                    <div *ngIf="(titleValidation.invalid && titleValidation.touched)|| titleValidation.dirty">
+
+                        <small *ngIf="titleValidation.errors?.required" class="text-danger">
+                            Meeting title is required.
+                        </small>
+                        <small *ngIf="titleValidation.errors?.minlength" class="text-danger">
+                            Meeting title must be at least 4 characters long.
+                        </small>
+                    </div>
+                    <div class="input-group mt-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-pen-alt"></i></span>
+                        </div>
+                        <input type="text"
+                            [class.is-invalid]="descriptionValidation.invalid && descriptionValidation.touched"
+                            class="form-control" placeholder="Meeting Description"
+                            formControlName="descriptionValidation" [(ngModel)]="meetingDetails.meetingDescription">
+                    </div>
+                    <div
+                        *ngIf="(descriptionValidation.invalid && descriptionValidation.touched)|| descriptionValidation.dirty">
+
+                        <small *ngIf="descriptionValidation.errors?.required" class="text-danger">
+                            Meeting Description is required.
+                        </small>
+                        <small *ngIf="descriptionValidation.errors?.minlength" class="text-danger">
+                            Meeting Descriotion must be at least 4 characters long.
+                        </small>
+                    </div>
+
+                    <div class="input-group mt-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                        </div>
+                        <input class="form-control" [formControl]="startDateValidation"
+                            [(ngModel)]="meetingDetails.meetingStartDate" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1"
+                            [class.is-invalid]="startDateValidation.invalid && startDateValidation.touched"
+                            placeholder="Start Date Time">
+                        <owl-date-time #dt1></owl-date-time>
+                    </div>
+                    <div
+                        *ngIf="(startDateValidation.invalid && startDateValidation.touched)|| startDateValidation.dirty">
+
+                        <small *ngIf="startDateValidation.errors?.required" class="text-danger">
+                            Start Date Time is required.
+                        </small>
+                    </div>
+                    <div class="input-group mt-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                        </div>
+                        <input class="form-control" [formControl]="endDateValidation"
+                            [(ngModel)]="meetingDetails.meetingEndDate" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2"
+                            [class.is-invalid]="endDateValidation.invalid && endDateValidation.touched"
+                            placeholder="End Date Time">
+                        <owl-date-time #dt2></owl-date-time>
+                    </div>
+                    <div *ngIf="(endDateValidation.invalid && endDateValidation.touched)|| endDateValidation.dirty">
+
+                        <small *ngIf="endDateValidation.errors?.required" class="text-danger">
+                            End Date Time is required.
+                        </small>
+                    </div>
+                    <div class="input-group mt-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-home"></i></span>
+                        </div>
+                        <input type="text" [class.is-invalid]="locationValidation.invalid && locationValidation.touched"
+                            class="form-control" placeholder="Location" formControlName="locationValidation"
+                            [(ngModel)]="meetingDetails.meetingPlace">
+                    </div>
+                    <div *ngIf="(locationValidation.invalid && locationValidation.touched)|| locationValidation.dirty">
+
+                        <small *ngIf="locationValidation.errors?.required" class="text-danger">
+                            Location is required.
+                        </small>
+                        <small *ngIf="locationValidation.errors?.minlength" class="text-danger">
+                            Location must be at least 4 characters long.
+                        </small>
+                    </div>
+                    <br>
+                    <button type="submit" [disabled]="!meetingForm.valid"
+                        class="btn btn-block btn-primary mx-auto">Update Meeting</button>
+                </form>
+                <br>
+                <div class="text-center"><a [routerLink]="['/admin-dashboard']">Back To Dashboard</a></div>
+            </div>
+        </div>
+    </div>
+</div>
