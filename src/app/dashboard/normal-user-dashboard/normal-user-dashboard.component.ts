@@ -148,7 +148,7 @@ public getUpdatesFromAdmin= () =>{
 public getUserAllMeetingFunction = () => {//this function will get all the meetings of User. 
   if(!this.authToken){
   this.appService.getMeetings(this.userId,this.authToken).subscribe(
-    (apiResponse) => {
+    (apiResponse:any) => {
       if (apiResponse.status == 200) {
 
         this.meetings = apiResponse.data;

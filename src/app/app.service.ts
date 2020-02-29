@@ -8,7 +8,7 @@ import 'rxjs/add/operator/do';
   providedIn: 'root'
 })
 export class AppService {
-  private baseUrl = "http://localhost:3000/api/v1";
+  private baseUrl = "https://api.mymeet.co/api/v1";
 
   constructor(public http:HttpClient) { }
   //component interaction using service

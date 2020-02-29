@@ -23,7 +23,6 @@ declare var $: any;
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
-  public events: CalendarEvent[] = [];
   public allUsers:any;
   public adminId:any;
   public adminName:any;
@@ -35,10 +34,9 @@ export class AdminDashboardComponent implements OnInit {
   public userName:any;
   public receiverId:any;
   public receiverName:any;
-  public meetings: any = [];
   public gentleReminder: Boolean = true;
-  private reload: any;
-  private reloadCount:number=1;
+  public meetings: any = [];
+  public events: CalendarEvent[] = [];
 
   constructor(
     public toastr:ToastrManager,
