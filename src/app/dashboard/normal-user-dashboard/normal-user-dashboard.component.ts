@@ -146,7 +146,6 @@ public getUpdatesFromAdmin= () =>{
   });
 }
 public getUserAllMeetingFunction = () => {//this function will get all the meetings of User. 
-  if(!this.authToken){
   this.appService.getMeetings(this.userId,this.authToken).subscribe(
     (apiResponse) => {
       if (apiResponse.status == 200) {
@@ -186,12 +185,6 @@ public getUserAllMeetingFunction = () => {//this function will get all the meeti
       }
    }
   );
-}
-else{
-  this.toastr.infoToastr('Missing Authorization key', "Please login again");
-    this.router.navigate(['/login']);
-
-}
   }//end getAllUserMeetings
 
   public meetingReminder(): any {

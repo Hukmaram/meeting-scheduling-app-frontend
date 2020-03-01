@@ -8,7 +8,7 @@ import 'rxjs/add/operator/do';
   providedIn: 'root'
 })
 export class AppService {
-  private baseUrl = "https://api.mymeet.co/api/v1";
+  private baseUrl = "http://api.mymeet.co/api/v1";
 
   constructor(public http:HttpClient) { }
   //component interaction using service
@@ -35,7 +35,7 @@ export class AppService {
     const params=new HttpParams()
     .set('firstName', data.firstName)
     .set('lastName', data.lastName)
-    .set('email',data.email)
+    .set('email',data.email.toLowerCase())
     .set('password',data.password)
     .set('admin',data.admin)
     .set('mobile',data.mobile)
@@ -45,14 +45,14 @@ export class AppService {
 
   public loginFunction(data):Observable<any>{
     const params=new HttpParams()
-    .set('email',data.email)
+    .set('email',data.email.toLowerCase())
     .set('password',data.password)
     return this.http.post(`${this.baseUrl}/users/login`,params);
   }
 
   public forgotPassword(data):Observable<any>{
     const params=new HttpParams()
-    .set('email',data.email)
+    .set('email',data.email.toLowerCase())
     return this.http.post(`${this.baseUrl}/users/forgotpassword`,params);
   }
 

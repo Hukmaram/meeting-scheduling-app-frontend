@@ -138,4 +138,5 @@ public notifyUpdatesToUser: any = (data) => {
   //data will be object with message and userId(recieverId)
   this.socketService.notifyUpdates(data);
 }//end notifyUpdatesToUser
+
 }

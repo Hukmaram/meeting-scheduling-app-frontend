@@ -12,7 +12,7 @@ import { th } from 'date-fns/locale';
   providedIn: 'root'
 })
 export class SocketService {
-  private baseUrl = "http://localhost:3000";
+  private baseUrl = "http://api.mymeet.co";
   public socket;
   
   constructor(private http: HttpClient) {

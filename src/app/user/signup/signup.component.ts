@@ -124,7 +124,6 @@ onSubmit(){
   if(data.admin==null){
     data.admin=false;
   }
- console.log(data);
  this.appService.signupFunction(data).subscribe(
    apiResponse=>{
      if(apiResponse.status==200){
