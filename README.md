@@ -1,4 +1,4 @@
-#  Meeting Planning System
+#  Meeting Planner
 ## Project Description
 This project should be a ready to deploy meetings scheduling system. It must have all
 the features mentioned below and it must be deployed on a server before
