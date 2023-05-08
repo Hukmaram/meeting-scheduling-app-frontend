@@ -25,7 +25,7 @@
     "angular-reactive-form": "^1.0.0",
     "bootstrap": "^4.4.1",
     "date-fns": "^2.9.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-bootstrap": "^1.6.3",
     "ng-pick-datetime": "^7.0.0",
     "ng2-cookies": "^1.0.12",
